@@ -4,32 +4,6 @@
 with open("dna.txt", "r") as data:
     dna_sequence = data.read()
 
-suspect_criteria = {
-    "Black hair": "CCAGCAATCGC",
-    "Brown hair": "GCCAGTGCCG",
-    "Blonde hair": "TTAGCTATCGC",
-
-    "Square face": "GCCACGG",
-    "Round face": "ACCACAA",
-    "Oval face": "AGGCCTCA",
-
-    "Blue eyes": "TTGTGGTGGC",
-    "Green eyes": "GGGAGGTGGC",
-    "Brown eyes": "AAGTAGTGAC",
-
-    "Female": "TGAAGGACCTTC",
-    "Male": "TGCAGGAACTTC",
-
-    "White": "AAAACCTCA",
-    "Black": "CGACTACAG",
-    "Asian": "CGCGGGCCG",
-}
-
-print("Culprit's characteristics:")
-for x in suspect_criteria:
-    if suspect_criteria[x] in dna_sequence:
-        print x
-
 eva = {
     "Gender": "TGAAGGACCTTC",
     "Race": "AAAACCTCA",
@@ -62,25 +36,19 @@ larisa = {
     "Face shape": "AGGCCTCA",
 }
 
-def find_suspect(suspect):
-    for x in suspect:
-        if (suspect[x]) in dna_sequence:
-            print(x +": Match!")
-        else:
-            print(x + ": Not a match!")
 
-print("------------------")
-print("Comparing suspects:")
-print
-print("Larisa:")
-find_suspect(larisa)
-print
-print("Matej:")
-find_suspect(matej)
-print
-print("Miha:")
-find_suspect(miha)
-print
-print("Eva:")
-find_suspect(eva)
+def find_suspect(suspect):
+    if all((suspect[x]) in dna_sequence for x in suspect):
+        return True
+
+if find_suspect(larisa) is True:
+    print("Larisa is the culprit!")
+elif find_suspect(matej) is True:
+    print("Matej is the culprit!")
+elif find_suspect(miha) is True:
+    print("Miha is the culprit!")
+elif find_suspect(eva) is True:
+    print("Eva is the culprit!")
+
+
 
